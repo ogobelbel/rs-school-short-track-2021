@@ -16,7 +16,7 @@ function findIndex(array, value) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] === value) {
       a = i;
-      i = 99;
+      break;
     }
   }
   return a;
