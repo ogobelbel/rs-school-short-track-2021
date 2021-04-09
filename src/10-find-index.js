@@ -12,14 +12,29 @@
  *
  */
 function findIndex(array, value) {
-  let a = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === value) {
-      a = i;
-      break;
+  const size = array.length;
+  let leftBorder = Math.ceil((Math.sqrt(size))); // делаем прыжок, это будет его левым краем
+  let prevLeftBorder = 0; // переменная для хранения предыдущей границы
+  while (array[Math.min(Math.ceil(leftBorder), size) - 1] < value) { // прибавляем шаг
+    // до тех пор, пока его граница не будет больше искомого числа
+    prevLeftBorder = leftBorder;
+    leftBorder += Math.ceil((Math.sqrt(size)));
+    if (prevLeftBorder >= size) {
+      return -1;
     }
   }
-  return a;
+  while (array[prevLeftBorder] < value) { // после нахождения большей
+    // границы берем предыдущее значение границы
+    prevLeftBorder++; // и выполняем линейный поиск пока не найдем нужный элемент
+    if (prevLeftBorder === Math.min(leftBorder, size)) {
+      return -1;
+    }
+  }
+
+  if (array[prevLeftBorder] === value) {
+    return prevLeftBorder;
+  }
+  return -1;
 }
 
 module.exports = findIndex;
