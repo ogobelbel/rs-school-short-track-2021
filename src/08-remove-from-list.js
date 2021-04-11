@@ -16,9 +16,26 @@
  *   this.next = null;
  * }
  */
-
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
+function removeKFromList(l, k) {
+  let begin = l;
+  const equalElem = k;
+  // Если удаляемый элемент это begin
+  while (begin && begin.value === equalElem) {
+    // ставим в начало след элемент
+    begin = begin.next;
+  }
+  let newBegin = begin;
+  if (newBegin) {
+    while (newBegin.next) {
+      if (newBegin.next.value === equalElem) {
+        // присваимваем след элементу значение элемента за ним
+        newBegin.next = newBegin.next.next;
+      } else {
+        newBegin = newBegin.next;
+      }
+    }
+  }
+  return begin;
 }
 
 module.exports = removeKFromList;
