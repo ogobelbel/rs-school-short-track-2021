@@ -29,7 +29,6 @@ class Queue {
       this.last = elem;
     } else {
       this.last.next = elem; // если не пуст, записываем его в последний
-      // и связываем его с предыдущим
       this.last = elem;
     }
     this.dlina++;
