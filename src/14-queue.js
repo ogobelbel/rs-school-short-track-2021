@@ -24,11 +24,11 @@ class Queue {
 
   enqueue(e) {
     const elem = new ListNode(e);
-    if (!this.top) { // если стек пуст, назначаем вершине и концу значение
+    if (!this.top) {
       this.top = elem;
       this.last = elem;
     } else {
-      this.last.next = elem; // если не пуст, записываем его в последний
+      this.last.next = elem;
       this.last = elem;
     }
     this.dlina++;
@@ -36,7 +36,7 @@ class Queue {
 
   dequeue() {
     const elem = this.top;
-    if (this.top.next) { // удаляем если есть что удалять
+    if (this.top.next) {
       this.top = this.top.next;
       this.dlina--;
     }
