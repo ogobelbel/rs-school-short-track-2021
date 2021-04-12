@@ -12,16 +12,36 @@
  */
 
 class Queue {
-  get size() {
-    throw new Error('Not implemented');
+  constructor() {
+    this.dlina = 0;
+    this.top = null;
+    this.last = null;
   }
 
-  enqueue(/* element */) {
-    throw new Error('Not implemented');
+  get size() {
+    return this.dlina;
+  }
+
+  enqueue(e) {
+    const elem = new ListNode(e);
+    if (!this.top) { // если стек пуст, назначаем вершине и концу значение
+      this.top = elem;
+      this.last = elem;
+    } else {
+      this.last.next = elem; // если не пуст, записываем его в последний
+      // и связываем его с предыдущим
+      this.last = elem;
+    }
+    this.dlina++;
   }
 
   dequeue() {
-    throw new Error('Not implemented');
+    const elem = this.top;
+    if (this.top.next) { // удаляем если есть что удалять
+      this.top = this.top.next;
+      this.dlina--;
+    }
+    return elem.value;
   }
 }
 
